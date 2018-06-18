@@ -87,6 +87,9 @@ const builds = {
     entry: resolve('web/entry-runtime-with-compiler.js'),
     dest: resolve('dist/vue.js'),
     format: 'umd',
+    amd: {
+      id: 'vue',
+    },
     env: 'development',
     alias: { he: './entity-decoder' },
     banner
@@ -96,6 +99,9 @@ const builds = {
     entry: resolve('web/entry-runtime-with-compiler.js'),
     dest: resolve('dist/vue.min.js'),
     format: 'umd',
+    amd: {
+      id: 'vue',
+    },
     env: 'production',
     alias: { he: './entity-decoder' },
     banner
@@ -189,6 +195,10 @@ function genConfig (name) {
       banner: opts.banner,
       name: opts.moduleName || 'Vue'
     }
+  }
+  
+  if (opts.amd) {
+    config.amd = opts.amd 
   }
 
   if (opts.env) {
